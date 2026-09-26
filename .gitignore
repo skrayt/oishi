@@ -21,6 +21,7 @@ download_site.mjs
 fetch_missing_assets.mjs
 fix_assets.mjs
 backup_legacy.mjs
+fix_relative_paths.mjs
 crawl_summary.json
 crawl_pages_raw.json
 
