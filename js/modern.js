@@ -4,17 +4,31 @@ document.addEventListener('DOMContentLoaded', () => {
   const navMenu = document.getElementById('navMenu');
 
   if (mobileMenuBtn && navMenu) {
+    const setMenuOpen = (open) => {
+      navMenu.classList.toggle('active', open);
+      mobileMenuBtn.setAttribute('aria-expanded', open);
+      mobileMenuBtn.setAttribute('aria-label', open ? 'メニューを閉じる' : 'メニューを開く');
+    };
+
     mobileMenuBtn.addEventListener('click', () => {
-      navMenu.classList.toggle('active');
-      const isExpanded = navMenu.classList.contains('active');
-      mobileMenuBtn.setAttribute('aria-expanded', isExpanded);
+      setMenuOpen(!navMenu.classList.contains('active'));
     });
 
     // メニュー項目クリックで自動的に閉じる
     navMenu.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        navMenu.classList.remove('active');
-      });
+      link.addEventListener('click', () => setMenuOpen(false));
+    });
+
+    // メニューの外側をタップしたら閉じる
+    document.addEventListener('click', (e) => {
+      if (navMenu.classList.contains('active') && !navMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+        setMenuOpen(false);
+      }
+    });
+
+    // PC幅に戻ったら閉じた状態にリセット
+    window.matchMedia('(min-width: 1201px)').addEventListener('change', (e) => {
+      if (e.matches) setMenuOpen(false);
     });
   }
 
