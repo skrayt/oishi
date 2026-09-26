@@ -1,0 +1,30 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# クロール・移行時の一時スクリプトと調査データ
+crawl.mjs
+download_site.mjs
+fetch_missing_assets.mjs
+fix_assets.mjs
+backup_legacy.mjs
+crawl_summary.json
+crawl_pages_raw.json
+
+# エディタ設定
+.vscode/
+.idea/
+*.swp
